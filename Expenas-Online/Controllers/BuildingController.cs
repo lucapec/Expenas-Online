@@ -13,13 +13,13 @@ namespace Expenas_Online
 
         public ActionResult<IEnumerable<BuildingDto>> GetFloors()
         {
-            return Ok(InquilinosData.InstanciaAcctual.Floor);
+            return Ok(InquilinosData.InstanciaActual.Floors);
         }
 
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<BuildingDto>> GetFloor(int floor)
         {
-            var floorToPass = InquilinosData.InstanciaActual.Floors.FirstOrDefault(x => x.Floor == floor));
+            var floorToPass = InquilinosData.InstanciaActual.Floors.FirstOrDefault(x => x.Floor == floor);
             if (floorToPass == null)
                 return NotFound();
             return Ok(floorToPass.Floor);
