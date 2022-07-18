@@ -25,6 +25,6 @@ namespace Expenas_Online.Entities
 
         public Building Building { get; set; }
 
-        public int BuildingFloor { get; set; } // habria q cambiarle el nombre
+        public int BuildingId { get; set; } // habria q cambiarle el nombre
     }
 }

@@ -11,8 +11,27 @@ namespace Expenas_Online.DBContext
         public InfoBuildingContext(DbContextOptions<InfoBuildingContext> options) : base(options)
         {
         }
-    }
 
-  
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var building = new Building[3]
+            {
+     
+                        new Building()
+                        {
+                            Units = 3,
+                        },
+                        new Building()
+                        {
+                            Floor = 1,
+                            Units = 4,
+                        },new Building()
+                        {
+                            Floor = 1,
+                            Units = 5,
+                        },
+            };
+        }
+      
 
 }
