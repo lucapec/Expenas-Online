@@ -1,3 +1,7 @@
+using Expenas_Online.API.Controllers;
+using Expenas_Online.DBContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<InquilinosData>();
+builder.Services.AddDbContext<InfoBuildingContext>(dbContextOptions => dbContextOptions.UseSqlite("Data Source=InfoBuilding.db"));
 
 var app = builder.Build();
 

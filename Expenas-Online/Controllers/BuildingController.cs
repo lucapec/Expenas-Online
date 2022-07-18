@@ -9,17 +9,22 @@ namespace Expenas_Online
 
     public class BuildingController : ControllerBase
     {
+        private readonly InquilinosData _inquilinosData1;
+        public BuildingController(InquilinosData inquilinosData)
+        {
+            _inquilinosData1 = inquilinosData;
+        }
         [HttpGet]
 
         public ActionResult<IEnumerable<BuildingDto>> GetFloors()
         {
-            return Ok(InquilinosData.InstanciaActual.Floors);
+            return Ok(_inquilinosData1.Floors);
         }
 
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<BuildingDto>> GetFloor(int floor)
         {
-            var floorToPass = InquilinosData.InstanciaActual.Floors.FirstOrDefault(x => x.Floor == floor);
+            var floorToPass = _inquilinosData1.Floors.FirstOrDefault(x => x.Floor == floor);
             if (floorToPass == null)
                 return NotFound();
             return Ok(floorToPass.Floor);
