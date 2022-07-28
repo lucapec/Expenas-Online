@@ -19,13 +19,35 @@ namespace Expenas_Online.Migrations
 
             modelBuilder.Entity("Expenas_Online.Entities.Building", b =>
                 {
-                    b.Property<int>("Floor")
+                    b.Property<int>("FloorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Floor");
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("FloorId");
 
                     b.ToTable("Building");
+
+                    b.HasData(
+                        new
+                        {
+                            FloorId = 1,
+                            Nombre = "asd"
+                        },
+                        new
+                        {
+                            FloorId = 2,
+                            Nombre = "sss"
+                        },
+                        new
+                        {
+                            FloorId = 3,
+                            Nombre = "eeeeo"
+                        });
                 });
 
             modelBuilder.Entity("Expenas_Online.Entities.Floor", b =>
@@ -34,21 +56,66 @@ namespace Expenas_Online.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BuildingFloor")
+                    b.Property<int>("BuildingId")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("Debt")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingFloor");
+                    b.HasIndex("BuildingId");
 
                     b.ToTable("Floor");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BuildingId = 1,
+                            Debt = 3000f,
+                            Nombre = "Carla"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BuildingId = 1,
+                            Debt = 9000f,
+                            Nombre = "Roberto"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BuildingId = 2,
+                            Debt = 8000f,
+                            Nombre = "Juan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BuildingId = 2,
+                            Debt = 2000f,
+                            Nombre = "s"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BuildingId = 3,
+                            Debt = 1000f,
+                            Nombre = "a"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BuildingId = 3,
+                            Debt = 4000f,
+                            Nombre = "aeae"
+                        });
                 });
 
             modelBuilder.Entity("Expenas_Online.Models.UnitDto", b =>
@@ -57,7 +124,7 @@ namespace Expenas_Online.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BuildingFloor")
+                    b.Property<int?>("BuildingFloorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("Debt")
@@ -69,7 +136,7 @@ namespace Expenas_Online.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingFloor");
+                    b.HasIndex("BuildingFloorId");
 
                     b.ToTable("UnitDto");
                 });
@@ -78,7 +145,7 @@ namespace Expenas_Online.Migrations
                 {
                     b.HasOne("Expenas_Online.Entities.Building", "Building")
                         .WithMany()
-                        .HasForeignKey("BuildingFloor")
+                        .HasForeignKey("BuildingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -89,7 +156,7 @@ namespace Expenas_Online.Migrations
                 {
                     b.HasOne("Expenas_Online.Entities.Building", null)
                         .WithMany("Units")
-                        .HasForeignKey("BuildingFloor");
+                        .HasForeignKey("BuildingFloorId");
                 });
 
             modelBuilder.Entity("Expenas_Online.Entities.Building", b =>

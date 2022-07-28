@@ -5,4 +5,5 @@
         public int Floor { get; set; }
         public ICollection<UnitDto> Units { get; set; } = new List<UnitDto>();
     }
+
 }

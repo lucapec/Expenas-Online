@@ -6,13 +6,18 @@ namespace Expenas_Online.Entities
 {
     public class Building
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key] 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+        public int Id { get; set; }
 
-        public int Floor { get; set; }
         [Required]
-        public ICollection<UnitDto> Units { get; set; } = new List<UnitDto>();
-        
+        [MaxLength(50)]
+        public string Nombre { get; set; }
+        public ICollection<Floor> Floors { get; set; } = new List<Floor>();
 
+        public Building(string nombre)
+        {
+            Nombre = nombre.Trim();
+        }
     }
 }
