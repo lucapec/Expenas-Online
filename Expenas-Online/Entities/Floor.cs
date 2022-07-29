@@ -16,8 +16,8 @@ namespace Expenas_Online.Entities
         public float Debt { get; set; } 
 
         [ForeignKey("BuildingId")]
-
         public Building Building { get; set; }
+        public int BuildingId { get; set; }
 
         public Floor(string nombre)
         {

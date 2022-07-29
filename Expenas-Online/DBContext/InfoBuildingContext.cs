@@ -16,10 +16,10 @@ namespace Expenas_Online.DBContext
         {
             List<Floor> floor = new List<Floor>()
             {
-            new Floor() {
+            new Floor("asdasd") {
                 Id=101,
                 Debt=5000 },
-            new Floor() {
+            new Floor("asdas") {
                 Id=102,
                 Debt=6000 },
             };
@@ -29,16 +29,15 @@ namespace Expenas_Online.DBContext
             {
                 new Building("asd")
                 {
-                    Floors = new List<Floor>(),
-        },
+                    Id = 1
+                },
                 new Building("sss")
                 {
-                    FloorId = 2,
-
+                    Id=2
                 },
                 new Building("eeeeo")
                 {
-                    FloorId = 3,
+                    Id=3
                 }
             };
             modelBuilder.Entity<Building>().HasData(building);
@@ -48,38 +47,38 @@ namespace Expenas_Online.DBContext
                 {
                     Id = 1,
                     Debt = 3000,
-                    Building = building[0]
+                    BuildingId = 1
                 },
                 new Floor("Roberto")
                 {
                     Id = 2,
                     Debt = 9000,
-                    Building = building[0]
+                    BuildingId = 1
                 },
 
                 new Floor("Juan")
                 {
                     Id = 3,
                     Debt = 8000,
-                    Building = building[1]
+                    BuildingId = 1
                 },
                 new Floor("s")
                 {
                     Id = 4,
                     Debt = 2000,
-                    Building = building[1]
+                    BuildingId = 1
                 },
                 new Floor("a")
                 {
                     Id = 5,
                     Debt = 1000,
-                    Building = building[2]
+                    BuildingId = 2
                 },
                 new Floor("aeae")
                 {
                     Id = 6,
                     Debt =  4000,
-                    Building = building[2]
+                    BuildingId = 2
                 });
 
             base.OnModelCreating(modelBuilder);
