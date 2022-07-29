@@ -23,5 +23,9 @@ namespace Expenas_Online.Entities
         {
             Nombre = nombre;
         }
+
+        public Floor()
+        {
+        }
     }
 }

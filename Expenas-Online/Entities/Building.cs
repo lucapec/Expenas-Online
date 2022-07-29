@@ -14,6 +14,7 @@ namespace Expenas_Online.Entities
         [MaxLength(50)]
         public string Nombre { get; set; }
         public ICollection<Floor> Floors { get; set; } = new List<Floor>();
+        public int FloorId { get; internal set; }
 
         public Building(string nombre)
         {
