@@ -1,7 +1,7 @@
 ﻿using ExpensasOnline.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExpensasOnline.API.DBContext
+namespace ExpensasOnline.API.DBContexts  
 {
     public class InformacionPisosContext : DbContext
     {
