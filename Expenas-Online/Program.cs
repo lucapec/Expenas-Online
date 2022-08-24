@@ -1,6 +1,8 @@
-using Expenas_Online.API.Controllers;
-using Expenas_Online.DBContext;
+using ExpensasOnline.API;
+using ExpensasOnline.API.DBContexts;
+using ExpensasOnline.API.Services;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<InquilinosData>();
-builder.Services.AddDbContext<InfoBuildingContext>(dbContextOptions => dbContextOptions.UseSqlite("Data Source=InfoBuilding.db"));
+
+builder.Services.AddDbContext<InformacionPisosContext>(dbContextOptions => dbContextOptions.UseSqlite(
+    builder.Configuration["ConnectionStrings:InfoPisosDBConnectionString"]));
+
+builder.Services.AddScoped<IInfoPisosRepository, InfoPisosRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 var app = builder.Build();
 
@@ -24,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

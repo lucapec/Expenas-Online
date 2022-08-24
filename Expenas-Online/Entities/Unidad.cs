@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Expenas_Online.Entities
+namespace ExpensasOnline.API.Entities
 {
-    public class Floor
+    public class Unidad
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
@@ -12,20 +12,16 @@ namespace Expenas_Online.Entities
         [Required]
         [MaxLength(50)]
         public string Nombre { get; set; }
+        
+        [MaxLength(250)]
+        public float? Deuda { get; set; } 
 
-        public float Debt { get; set; } 
-
-        [ForeignKey("BuildingId")]
-        public Building Building { get; set; }
-        public int BuildingId { get; set; }
-
-        public Floor(string nombre)
+        [ForeignKey("PisoId")]
+        public Piso? Piso { get; set; }
+        public int PisoId { get; set; }
+        public Unidad(string nombre)
         {
             Nombre = nombre;
-        }
-
-        public Floor()
-        {
         }
     }
 }
