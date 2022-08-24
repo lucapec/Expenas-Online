@@ -13,7 +13,6 @@ namespace ExpensasOnline.API.Entities
         [MaxLength(50)]
         public string Nombre { get; set; }
         
-        [MaxLength(250)]
         public float? Deuda { get; set; } 
 
         [ForeignKey("PisoId")]

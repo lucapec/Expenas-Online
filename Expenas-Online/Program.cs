@@ -2,7 +2,9 @@ using ExpensasOnline.API;
 using ExpensasOnline.API.DBContexts;
 using ExpensasOnline.API.Services;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//builder.Services.AddSingleton<InquilinosData>();
+
+
 
 
 builder.Services.AddDbContext<InformacionPisosContext>(dbContextOptions => dbContextOptions.UseSqlite(
@@ -35,7 +40,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

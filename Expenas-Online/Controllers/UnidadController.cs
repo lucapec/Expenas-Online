@@ -9,7 +9,6 @@ using Entities = ExpensasOnline.API.Entities;
 namespace PisosInfo.API.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/pisos/{idPiso}/unidades")] //Ya que esto es dependiente de ciudades necesito que primero me indique la ciudad
     public class UnidadController : ControllerBase
     {
@@ -30,11 +29,11 @@ namespace PisosInfo.API.Controllers
             return Ok(_mapper.Map<IEnumerable<UnidadDto>>(_repository.GetUnidades(idPiso)));
         }
 
-        [HttpGet("{idUnidad}", Name = "GetUnidad")] // El name se lo da para usarlo en el POST.
+        [HttpGet("{idUnidad}", Name = "GetUnidad")] 
         public ActionResult<Unidad> GetUnidadDePiso(int idPiso, int idUnidad)
         {
             
-            var unidad = _repository.GetUnidadDePiso(idPiso, idUnidad); //Acá lo traemos y no agregamos un método al repositorio pq necesitamos la data, entonces lo tenemos que traer igualmente.
+            var unidad = _repository.GetUnidadDePiso(idPiso, idUnidad); 
 
             if (unidad == null)
                 return NotFound();
@@ -44,7 +43,7 @@ namespace PisosInfo.API.Controllers
 
       
         [HttpPut("{idUnidad}")]
-        public ActionResult ActualizarPuntoDeInteres(int idPiso, int idUnidad,UnidadParaUpdateDto unidad)
+        public ActionResult ActualizarUnidades(int idPiso, int idUnidad, UnidadParaUpdateDto unidad)
         {
        
             var unidadAActualizar = _repository.GetUnidadDePiso(idPiso, idUnidad);
