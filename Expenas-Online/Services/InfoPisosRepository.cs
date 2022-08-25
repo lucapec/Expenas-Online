@@ -33,7 +33,12 @@ namespace ExpensasOnline.API.Services
             return _context.Unidades.Where(p => p.PisoId == idPiso).ToList();
         }
 
-     
+        public void AgregarUnidad(int idPiso, Unidad unidad)
+        {
+            var piso = GetPiso(idPiso);
+            if (piso != null)
+                piso.Unidad.Add(unidad);
+        }
         public void EliminarUnidad(Unidad unidad)
         {
             _context.Unidades.Remove(unidad);

@@ -2,7 +2,6 @@
 using ExpensasOnline.API.Entities;
 using ExpensasOnline.API.Models;
 using ExpensasOnline.API.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Entities = ExpensasOnline.API.Entities;
 
@@ -55,6 +54,28 @@ namespace PisosInfo.API.Controllers
             _repository.GuardarCambios();
 
             return NoContent();
+        }
+
+        [HttpPost]
+        public ActionResult<UnidadDto> CrearUnidad(int idPiso, UnidadParaCrearDto unidad)
+        {
+          
+
+            var nuevaUnidad = _mapper.Map<Entities.Unidad>(unidad);
+
+            _repository.AgregarUnidad(idPiso, nuevaUnidad);
+            _repository.GuardarCambios();
+
+            var unidadADevolver = _mapper.Map<UnidadParaCrearDto>(nuevaUnidad);
+
+            return CreatedAtRoute(//CreatedAtRoute es para q devuelva 201, el 200 de post.
+                "GetUnidad", //El primer parámetro es el Name del endpoint que hace el Get
+                new //El segundo los parametros q necesita ese endpoint
+                {
+                    idPiso,
+                    idUnidad = nuevaUnidad.Id
+                },
+                unidadADevolver);//El tercero es el objeto creado. 
         }
 
 

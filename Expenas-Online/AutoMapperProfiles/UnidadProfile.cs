@@ -8,6 +8,7 @@ namespace ExpensasOnline.API.AutoMapperProfiles
         {
             CreateMap<Entities.Unidad, Models.UnidadDto>();
             CreateMap<Models.UnidadParaUpdateDto, Entities.Unidad>();
+            CreateMap<Models.UnidadParaCrearDto, Entities.Unidad>();
         }
     }
 }
