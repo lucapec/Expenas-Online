@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PisosInfo.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/pisos")]
     public class PisoController : ControllerBase

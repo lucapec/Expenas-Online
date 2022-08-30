@@ -2,11 +2,13 @@
 using ExpensasOnline.API.Entities;
 using ExpensasOnline.API.Models;
 using ExpensasOnline.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Entities = ExpensasOnline.API.Entities;
 
 namespace PisosInfo.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/pisos/{idPiso}/unidades")] //Ya que esto es dependiente de ciudades necesito que primero me indique la ciudad
     public class UnidadController : ControllerBase
@@ -51,7 +53,7 @@ namespace PisosInfo.API.Controllers
 
             _mapper.Map(unidad, unidadAActualizar); 
 
-            _repository.GuardarCambios();
+            _repository.GuardarCambio();
 
             return NoContent();
         }
@@ -64,7 +66,7 @@ namespace PisosInfo.API.Controllers
             var nuevaUnidad = _mapper.Map<Entities.Unidad>(unidad);
 
             _repository.AgregarUnidad(idPiso, nuevaUnidad);
-            _repository.GuardarCambios();
+            _repository.GuardarCambio();
 
             var unidadADevolver = _mapper.Map<UnidadParaCrearDto>(nuevaUnidad);
 
@@ -88,7 +90,7 @@ namespace PisosInfo.API.Controllers
                 return NotFound();
 
             _repository.EliminarUnidad(unidadAEliminar);
-            _repository.GuardarCambios();
+            _repository.GuardarCambio();
 
             return NoContent();
         }

@@ -44,7 +44,7 @@ namespace ExpensasOnline.API.Services
             _context.Unidades.Remove(unidad);
         }
 
-        public bool GuardarCambios()
+        public bool GuardarCambio()
         {
             return (_context.SaveChanges() >= 0);
         }

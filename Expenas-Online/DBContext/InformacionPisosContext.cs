@@ -1,4 +1,6 @@
-﻿using ExpensasOnline.API.Entities;
+﻿using Expenas_Online.Entities;
+using Expenas_Online.Enums;
+using ExpensasOnline.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpensasOnline.API.DBContexts  
@@ -7,6 +9,8 @@ namespace ExpensasOnline.API.DBContexts
     {
         public DbSet<Piso> Pisos { get; set; } 
         public DbSet<Unidad> Unidades { get; set; }
+        
+        public DbSet<Usuario> Usuarios { get; set; }
         public InformacionPisosContext(DbContextOptions<InformacionPisosContext> options) : base(options) 
         {
 
@@ -72,6 +76,28 @@ namespace ExpensasOnline.API.DBContexts
                     Deuda = 553400,
                     PisoId = pisos[2].Id
                 });
+
+            var usuarios = new Usuario[2] {
+                new Usuario()
+                {
+                    Id = 1,
+                    Password = "mati123",
+                    UserName = "matias",
+                    Rol = TipoUsuario.administrador
+
+                },
+                new Usuario()
+                {
+                    Id = 2,
+                    Password = "luca123",
+                    UserName = "luca",
+                    Rol = TipoUsuario.administrador
+
+                } 
+            };
+
+            modelBuilder.Entity<Usuario>().HasData(usuarios);
+
 
             base.OnModelCreating(modelBuilder);
         }

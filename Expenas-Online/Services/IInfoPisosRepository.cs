@@ -10,6 +10,6 @@ namespace ExpensasOnline.API.Services
         public Unidad? GetUnidadDePiso(int idPiso, int idUnidad);
         public void AgregarUnidad(int idPiso, Unidad unidad);
         void EliminarUnidad(Unidad unidad);
-        public bool GuardarCambios();
+        public bool GuardarCambio();
     }
 }
